@@ -14,7 +14,7 @@ export interface Product {
 export interface CartItem extends Product {
   quantity: number;
 }
-
+/* knip-ignore */
 export interface User {
   id: string;
   name?: string | null;

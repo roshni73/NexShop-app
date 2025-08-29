@@ -49,13 +49,11 @@ export default function Home() {
 
   const handleSearch = async (query: string) => {
     setSearchQuery(query);
-    setCurrentPage(1);
-
     if (!query.trim()) {
       setFilteredProducts(products);
       return;
     }
-
+    setCurrentPage(1);
     try {
       const results = await searchProducts(query);
       setFilteredProducts(results);

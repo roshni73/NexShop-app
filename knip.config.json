@@ -1,15 +1,18 @@
 {
-    "$schema": "https://unpkg.com/knip/schema.json",
-    "entry": [
-      "src/app/**/*.{ts,tsx}",
-      "src/pages/**/*.{ts,tsx}",
-      "src/components/**/*.{ts,tsx}",
-      "src/lib/**/*.{ts,tsx}"
-    ],
-    "ignoreDependencies": [
-      "next",
-      "react",
-      "react-dom",
-      "lucide-react"
-    ]
-  }
+  "$schema": "https://unpkg.com/knip/schema.json",
+  "entry": [
+    "package.json",
+    "src/app/**/*.{ts,tsx}",
+    "src/pages/**/*.{ts,tsx}",
+    "src/components/**/*.{ts,tsx}",
+    "src/lib/**/*.{ts,tsx}"
+  ],
+  "ignoreDependencies": [
+    "next",
+    "react",
+    "react-dom",
+    "lucide-react",
+    "eslint-config-next",
+    "tailwindcss"
+  ]
+}
