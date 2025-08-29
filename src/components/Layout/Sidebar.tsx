@@ -25,7 +25,7 @@ const navigationItems = [
   { href: '/', label: 'Products', icon: Package },
   { href: '/cart', label: 'My Cart', icon: ShoppingCart },
   { href: '/checkout', label: 'Checkout', icon: CreditCard, protected: true },
-  { href: '/profile', label: 'Profile', icon: User }
+  { href: '/profile', label: 'Profile', icon: User ,protected: true }
 ];
 
 export default function Sidebar() {

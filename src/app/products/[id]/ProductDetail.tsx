@@ -69,8 +69,6 @@ export default function ProductDetail({ product }: ProductDetailProps) {
               <div className="inline-block bg-[#00CCCC]/10 text-[#00CCCC] text-sm font-medium px-4 py-1.5 rounded-full border border-[#00CCCC]/20">
                 {product.category}
               </div>
-
-              {/* Title & Rating */}
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold text-gray-800 leading-tight">
                   {product.title}
@@ -100,14 +98,10 @@ export default function ProductDetail({ product }: ProductDetailProps) {
                   </h2>
                 </div>
               </div>
-
-              {/* Description */}
               <div className="space-y-6">
                 <p className="text-gray-600 leading-relaxed text-base">
                   {product.description}
                 </p>
-
-                {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-3">
                   <button
                     onClick={handleAddToCart}

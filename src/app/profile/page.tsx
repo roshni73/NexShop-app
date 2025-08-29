@@ -169,8 +169,6 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
-
-          {/* Quick Actions */}
           <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
             <Link
               href="/orders"

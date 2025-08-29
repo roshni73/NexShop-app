@@ -3,13 +3,15 @@ import { fetchProduct } from "@/lib/api";
 import ProductDetail from "./ProductDetail";
 
 interface ProductPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
-  const product = await fetchProduct(params.id);
+  const { id } = await params;
+  const product = await fetchProduct(id)
+
   if (!product) {
     notFound();
   }

@@ -1,15 +1,18 @@
 'use client';
 
-import {
-  ClientSafeProvider,
-  getProviders,
-  signIn,
-  useSession
-  } from 'next-auth/react';
+import { getProviders, signIn, useSession } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { ShoppingBag, Sparkles, Shield, Clock } from 'lucide-react';
+
+interface ClientSafeProvider {
+  id: string;
+  name: string;
+  type: string;
+  signinUrl: string;
+  callbackUrl: string;
+}
 
 export default function SignInPage() {
   const [providers, setProviders] = useState<Record<string, ClientSafeProvider> | null>(null);

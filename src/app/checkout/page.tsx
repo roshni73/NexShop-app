@@ -88,7 +88,7 @@ export default function CheckoutPage() {
             </p>
             <Link
               href="/"
-              className="inline-block bg-[#283841] text-white px-6 py-3 rounded-lg hover:bg-[#283841]/80 transition-colors"
+              className="inline-block bg-[#00CCCC] text-white px-6 py-3 rounded-lg hover:bg-[#00AAAA] transition-colors"
             >
               Continue Shopping
             </Link>
@@ -104,7 +104,6 @@ export default function CheckoutPage() {
         <h2 className="text-3xl font-bold text-gray-800 mb-8">Checkout</h2>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Order Summary */}
           <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
             <h2 className="text-xl font-bold text-gray-800 mb-4">
               Order Summary
@@ -138,8 +137,6 @@ export default function CheckoutPage() {
               </div>
             </div>
           </div>
-
-          {/* Payment Form */}
           <div className="bg-white rounded-lg border border-gray-200 p-6 shadow-sm">
             <h2 className="text-xl font-bold text-gray-800 mb-4">
               Payment Details
@@ -153,7 +150,7 @@ export default function CheckoutPage() {
                 <input
                   type="text"
                   placeholder="1234 5678 9012 3456"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00CCCC] focus:border-transparent"
                   disabled
                 />
               </div>
@@ -166,7 +163,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     placeholder="MM/YY"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00CCCC] focus:border-transparent"
                     disabled
                   />
                 </div>
@@ -177,7 +174,7 @@ export default function CheckoutPage() {
                   <input
                     type="text"
                     placeholder="123"
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00CCCC] focus:border-transparent"
                     disabled
                   />
                 </div>
@@ -190,7 +187,7 @@ export default function CheckoutPage() {
                 <input
                   type="text"
                   placeholder="John Doe"
-                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#00CCCC] focus:border-transparent"
                   disabled
                 />
               </div>
@@ -206,7 +203,7 @@ export default function CheckoutPage() {
                 type="button"
                 onClick={handlePlaceOrder}
                 disabled={processing}
-                className="w-full bg-[#283841] text-white py-3 px-4 rounded-lg hover:bg-[#283841]/80 transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full bg-[#00CCCC] text-white py-3 px-4 rounded-lg hover:bg-[#00AAAA] transition-colors duration-200 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {processing
                   ? "Processing..."

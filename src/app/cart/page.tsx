@@ -35,7 +35,6 @@ export default function CartPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#00CCCC]/5 via-white to-[#00CCCC]/3 py-8">
       <div className="container mx-auto px-4 max-w-6xl">
-        {/* Header */}
         <div className="flex items-center gap-3 mb-8">
           <div className="w-10 h-10 bg-[#00CCCC] rounded-full flex items-center justify-center">
             <Package size={20} className="text-white" />
@@ -47,14 +46,11 @@ export default function CartPage() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
             {items.map((item) => (
               <CartItem key={item.id} item={item} />
             ))}
           </div>
-
-          {/* Order Summary */}
           <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 h-fit sticky top-6">
             <h2 className="text-lg font-semibold text-gray-800 mb-4 flex items-center gap-2">
               <Receipt size={20} className="text-[#00CCCC]" />
@@ -101,8 +97,6 @@ export default function CartPage() {
                 Continue Shopping
               </Link>
             </div>
-
-            {/* Trust Badges */}
             <div className="mt-5 pt-4 border-t border-gray-100">
               <div className="flex items-center justify-center gap-3 text-xs text-gray-500">
                 <span>✓ Free shipping</span>
@@ -114,8 +108,6 @@ export default function CartPage() {
             </div>
           </div>
         </div>
-
-        {/* Additional Info */}
         <div className="mt-8 bg-white rounded-xl p-4 border border-gray-100">
           <div className="flex items-center justify-between text-sm text-gray-600">
             <span>Enjoy free shipping on orders over $50</span>
