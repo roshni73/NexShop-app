@@ -1,7 +1,6 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { getServerSession } from 'next-auth/next';
-import { authOptions } from '@/lib/auth';
+import { auth } from '@/lib/auth';
 import SessionProvider from '@/lib/utils/SessionProvider';
 import StoreProvider from '@/lib/utils/StoreProvider';
 import Sidebar from '@/components/Layout/Sidebar';
@@ -33,8 +32,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await getServerSession(authOptions);
-
+  const session = await auth();
   return (
     <html lang="en">
       <body className={`${poppins.variable} ${roboto.variable} antialiased`}>

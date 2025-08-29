@@ -214,10 +214,12 @@ export default function Sidebar() {
                   <div className="w-8 h-8 bg-[#00CCCC] rounded-full flex items-center justify-center flex-shrink-0">
                     {session.user?.image ? (
                       <Image
-                        src={session.user.image}
-                        alt="Profile"
-                        className="w-8 h-8 rounded-full object-cover"
-                      />
+                      src={session.user.image}
+                      alt="Profile"
+                      width={32}
+                      height={32}
+                      className="rounded-full object-cover"
+                    />
                     ) : (
                       <User size={16} className="text-white" />
                     )}

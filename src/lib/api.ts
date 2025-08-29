@@ -1,6 +1,6 @@
 import { Product } from '@/types/product';
 
-const API_BASE_URL = 'https://fakestoreapi.com';
+const API_BASE_URL = process.env.API_BASE_URL || 'https://fakestoreapi.com';
 
 export async function fetchProducts(limit?: number): Promise<Product[]> {
   try {
@@ -23,7 +23,7 @@ export async function fetchProducts(limit?: number): Promise<Product[]> {
 export async function fetchProduct(id: string): Promise<Product> {
 
   try {
-    const url = `https://fakestoreapi.com/products/${id}`
+    const url = `${API_BASE_URL}/products/${id}`;
     const response = await fetch(url, {
       next: { revalidate: 3600 }
     });

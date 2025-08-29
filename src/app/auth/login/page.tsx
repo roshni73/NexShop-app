@@ -1,13 +1,18 @@
 'use client';
 
-import { getProviders, signIn, useSession } from 'next-auth/react';
+import {
+  ClientSafeProvider,
+  getProviders,
+  signIn,
+  useSession
+  } from 'next-auth/react';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { ShoppingBag, Sparkles, Shield, Clock } from 'lucide-react';
 
 export default function SignInPage() {
-  const [providers, setProviders] = useState<any>(null);
+  const [providers, setProviders] = useState<Record<string, ClientSafeProvider> | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const { data: session, status } = useSession();
   const router = useRouter();
@@ -45,7 +50,6 @@ export default function SignInPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#00CCCC]/10 via-white to-[#00CCCC]/5 px-6 py-12">
       <div className="w-full max-w-4xl grid md:grid-cols-2 gap-8 bg-white rounded-2xl shadow-xl overflow-hidden">
-        {/* Left Side - Branding & Features */}
         <div className="bg-gradient-to-br from-[#00CCCC] to-[#008888] text-white p-12 hidden md:flex flex-col justify-center">
           <div className="text-center">
             <div className="flex items-center justify-center mb-6">
@@ -89,8 +93,6 @@ export default function SignInPage() {
             </div>
           </div>
         </div>
-
-        {/* Right Side - Login Form */}
         <div className="p-12 flex flex-col justify-center">
           <div className="text-center mb-8 md:hidden">
             <div className="flex items-center justify-center mb-4">
@@ -104,11 +106,9 @@ export default function SignInPage() {
             <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back 👋</h2>
             <p className="text-gray-600">Sign in to access your shopping cart and preferences</p>
           </div>
-
-          {/* Provider Buttons */}
           <div className="space-y-4">
             {providers &&
-              Object.values(providers).map((provider: any) => (
+              Object.values(providers).map((provider: ClientSafeProvider) => (
                 <div key={provider.name}>
                   <button
                     onClick={() => handleSignIn(provider.id)}

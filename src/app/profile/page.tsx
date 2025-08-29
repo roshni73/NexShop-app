@@ -3,6 +3,7 @@
 import { useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { Edit, MapPin, Phone, Mail, Calendar, Shield } from 'lucide-react';
+import Image from 'next/image';
 
 export default function ProfilePage() {
   const { data: session } = useSession();
@@ -47,7 +48,6 @@ export default function ProfilePage() {
   return (
     <div className="flex-1 p-6 min-h-screen bg-gray-50">
       <main className="max-w-4xl mx-auto">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
           <div>
             <h1 className="text-3xl font-bold text-gray-800">My Profile</h1>
@@ -58,18 +58,17 @@ export default function ProfilePage() {
             <span>Edit Profile</span>
           </button>
         </div>
-
-        {/* Profile Card */}
         <div className="bg-white rounded-2xl shadow-md overflow-hidden">
-          {/* Profile Header */}
           <div className="bg-gradient-to-r from-[#00CCCC] to-[#008888] p-6 text-white">
             <div className="flex items-center gap-4">
               <div className="w-20 h-20 bg-white/20 rounded-full flex items-center justify-center">
                 {session.user?.image ? (
-                  <img
+                  <Image
                     src={session.user.image}
+                    width={20}
+                    height={20}
                     alt="Profile"
-                    className="w-20 h-20 rounded-full object-cover"
+                    className="rounded-full object-cover"
                   />
                 ) : (
                   <span className="text-2xl font-bold">
@@ -83,11 +82,8 @@ export default function ProfilePage() {
               </div>
             </div>
           </div>
-
-          {/* Profile Details */}
           <div className="p-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Personal Information */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
                   <Shield size={20} className="text-[#00CCCC]" />
@@ -120,8 +116,6 @@ export default function ProfilePage() {
                   </div>
                 </div>
               </div>
-
-              {/* Address Information */}
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-gray-800 flex items-center gap-2">
                   <MapPin size={20} className="text-[#00CCCC]" />
@@ -158,8 +152,6 @@ export default function ProfilePage() {
                 </div>
               </div>
             </div>
-
-            {/* Stats */}
             <div className="mt-8 pt-6 border-t border-gray-100">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="text-center p-4 bg-gray-50 rounded-lg">

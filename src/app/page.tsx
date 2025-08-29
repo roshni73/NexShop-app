@@ -33,7 +33,7 @@ export default function Home() {
       const data = await fetchProducts();
       setProducts(data);
       setFilteredProducts(data);
-    } catch (error) {
+    } catch {
       setError('Failed to load products. Please try again later.');
       toast.error('Failed to load products');
     } finally {
@@ -65,7 +65,7 @@ export default function Home() {
       } else {
         toast.success(`Found ${results.length} product${results.length > 1 ? 's' : ''}`);
       }
-    } catch (error) {
+    } catch {
       toast.error('Search failed');
       setFilteredProducts([]);
     }
@@ -121,9 +121,7 @@ export default function Home() {
             <button
               onClick={() => setViewMode('grid')}
               className={`p-2 rounded-lg transition-colors ${
-                viewMode === 'grid'
-                  ? 'bg-[#00CCCC] text-white'
-                  : 'text-gray-600 hover:text-[#00CCCC]'
+                viewMode === 'grid' ? 'bg-[#00CCCC] text-white' : 'text-gray-600 hover:text-[#00CCCC]'
               }`}
               title="Grid view"
             >
@@ -132,9 +130,7 @@ export default function Home() {
             <button
               onClick={() => setViewMode('list')}
               className={`p-2 rounded-lg transition-colors ${
-                viewMode === 'list'
-                  ? 'bg-[#00CCCC] text-white'
-                  : 'text-gray-600 hover:text-[#00CCCC]'
+                viewMode === 'list' ? 'bg-[#00CCCC] text-white' : 'text-gray-600 hover:text-[#00CCCC]'
               }`}
               title="List view"
             >
@@ -142,7 +138,6 @@ export default function Home() {
             </button>
           </div>
         </div>
-
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
           <div className="flex-1 max-w-md">
             <SearchInput onSearch={handleSearch} />
@@ -167,89 +162,61 @@ export default function Home() {
         {loading ? (
           <div
             className={`grid gap-6 ${
-              viewMode === 'grid'
-                ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-                : 'grid-cols-1'
+              viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'
             }`}
           >
-            {Array.from({ length: 8 }).map((_, index) => (
+            {Array.from({ length: PRODUCTS_PER_PAGE }).map((_, index) => (
               <ProductSkeleton key={index} viewMode={viewMode} />
             ))}
           </div>
+        ) : filteredProducts.length === 0 ? (
+          <div className="text-center py-16">
+            <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <Package className="text-gray-400" size={32} />
+            </div>
+            <h3 className="text-xl font-semibold text-gray-800 mb-2">
+              {searchQuery ? 'No products found' : 'No products available'}
+            </h3>
+            <p className="text-gray-600 mb-6">
+              {searchQuery
+                ? 'Try adjusting your search terms or browse our categories.'
+                : 'Check back later for new arrivals.'}
+            </p>
+            {searchQuery && (
+              <button
+                onClick={() => {
+                  setSearchQuery('');
+                  handleSearch('');
+                }}
+                className="bg-[#00CCCC] text-white px-6 py-2 rounded-xl hover:bg-[#00AAAA] transition-colors"
+              >
+                Clear Search
+              </button>
+            )}
+          </div>
         ) : (
           <>
-            {filteredProducts.length === 0 ? (
-              <div className="text-center py-16">
-                <div className="w-20 h-20 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <Package className="text-gray-400" size={32} />
-                </div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
-                  {searchQuery ? 'No products found' : 'No products available'}
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  {searchQuery
-                    ? 'Try adjusting your search terms or browse our categories.'
-                    : 'Check back later for new arrivals.'}
-                </p>
-                {searchQuery && (
-                  <button
-                    onClick={() => {
-                      setSearchQuery('');
-                      handleSearch('');
-                    }}
-                    className="bg-[#00CCCC] text-white px-6 py-2 rounded-xl hover:bg-[#00AAAA] transition-colors"
-                  >
-                    Clear Search
-                  </button>
-                )}
-              </div>
-            ) : (
-              <>
-                <div
-                  className={`grid gap-6 ${
-                    viewMode === 'grid'
-                      ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
-                      : 'grid-cols-1'
-                  }`}
-                >
-                  {paginatedProducts.map((product) => (
-                    <ProductCard key={product.id} product={product} viewMode={viewMode} />
-                  ))}
-                </div>
+            <div
+              className={`grid gap-6 ${
+                viewMode === 'grid' ? 'grid-cols-1 sm:grid-cols-2 lg:grid-cols-3' : 'grid-cols-1'
+              }`}
+            >
+              {paginatedProducts.map((product) => (
+                <ProductCard key={product.id} product={product} viewMode={viewMode} />
+              ))}
+            </div>
 
-                {totalPages > 1 && (
-                  <div className="mt-12">
-                    <Pagination
-                      currentPage={currentPage}
-                      totalPages={totalPages}
-                      onPageChange={setCurrentPage}
-                      className="justify-center"
-                    />
-                  </div>
-                )}
-              </>
+            {totalPages > 1 && (
+              <div className="mt-12">
+                <Pagination
+                  currentPage={currentPage}
+                  totalPages={totalPages}
+                  onPageChange={setCurrentPage}
+                  className="justify-center"
+                />
+              </div>
             )}
           </>
-        )}
-        {!loading && filteredProducts.length > 0 && (
-          <div className="mt-12 pt-8 border-t border-gray-200">
-            <div className="flex flex-wrap justify-center gap-8 text-center">
-              <div>
-                <div className="text-2xl font-bold text-[#00CCCC]">{filteredProducts.length}</div>
-                <div className="text-sm text-gray-600">Total Products</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-[#00CCCC]">{totalPages}</div>
-                <div className="text-sm text-gray-600">Pages</div>
-              </div>
-              <div>
-                <div className="text-2xl font-bold text-[#00CCCC]">
-                  {Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE)}
-                </div>
-                <div className="text-sm text-gray-600">Total Pages</div>
-              </div>
-            </div>
-          </div>
         )}
       </div>
     </div>
