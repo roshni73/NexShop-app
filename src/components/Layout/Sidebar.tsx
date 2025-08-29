@@ -19,19 +19,20 @@ import {
   ShoppingBag,
 } from 'lucide-react';
 import { RootState } from '@/lib/store';
+import Image from 'next/image';
 
 const navigationItems = [
   { href: '/', label: 'Products', icon: Package },
   { href: '/cart', label: 'My Cart', icon: ShoppingCart },
-  { href: '/checkout', label: 'Checkout', icon: CreditCard},
-  { href: '/profile', label: 'Profile', icon: User}
+  { href: '/checkout', label: 'Checkout', icon: CreditCard, protected: true },
+  { href: '/profile', label: 'Profile', icon: User }
 ];
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const pathname = usePathname();
-  const { data: session } = useSession();
+  const { data: session, status } = useSession();
   const totalItems = useSelector((state: RootState) => state.cart.totalItems);
 
   const toggleSidebar = () => setIsOpen(!isOpen);
@@ -50,6 +51,17 @@ export default function Sidebar() {
     closeSidebar();
     setIsDropdownOpen(false);
   };
+
+  if (status === 'loading') {
+    return (
+      <div className="fixed left-0 top-0 h-screen bg-white border-r border-gray-100 w-64">
+        <div className="p-6 border-b border-gray-100">
+          <h1 className="text-2xl font-bold text-[#00CCCC]">NexShop</h1>
+        </div>
+        <div className="p-4">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <>
@@ -83,15 +95,16 @@ export default function Sidebar() {
                   onClick={() => setIsDropdownOpen(false)}
                   aria-hidden="true"
                 />
+
                 <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl shadow-lg border border-gray-200 z-50 py-2">
                   {session ? (
                     <>
                       <div className="px-4 py-3 border-b border-gray-100">
                         <p className="text-sm font-medium text-gray-800 truncate">
-                          {session.user?.name}
+                          {session.user?.name || 'User'}
                         </p>
                         <p className="text-xs text-gray-500 truncate">
-                          {session.user?.email}
+                          {session.user?.email || ''}
                         </p>
                       </div>
                       <Link
@@ -200,7 +213,7 @@ export default function Sidebar() {
                 <div className="flex items-center gap-3 px-4 py-3 bg-gray-50 rounded-xl">
                   <div className="w-8 h-8 bg-[#00CCCC] rounded-full flex items-center justify-center flex-shrink-0">
                     {session.user?.image ? (
-                      <img
+                      <Image
                         src={session.user.image}
                         alt="Profile"
                         className="w-8 h-8 rounded-full object-cover"
@@ -211,10 +224,10 @@ export default function Sidebar() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-medium text-gray-800 truncate">
-                      {session.user?.name}
+                      {session.user?.name || 'User'}
                     </p>
                     <p className="text-xs text-gray-500 truncate">
-                      {session.user?.email}
+                      {session.user?.email || ''}
                     </p>
                   </div>
                 </div>

@@ -53,24 +53,16 @@ export default function ProductCard(props:ProductCardProps) {
             )}
           </button>
         </div>
-
-        {/* Content */}
         <div className="p-4 space-y-3">
-
-          {/* Title */}
           <h2 className="font-semibold text-[#283841] text-lg leading-tight line-clamp-1 group-hover:text-[#283841]/80 transition-colors">
             {product.title}
           </h2>
-
-          {/* Description */}
           <p className="text-[#283841]/60 text-sm line-clamp-2 leading-relaxed">
             {product.description.length > 60
               ? `${product.description.substring(0, 60)}...`
               : product.description
             }
           </p>
-
-          {/* Price Section */}
           <div className="pt-2 border-t border-gray-100/80">
             <div className="flex items-center justify-between">
               <div className="flex items-baseline space-x-1">

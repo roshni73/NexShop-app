@@ -8,12 +8,13 @@ import SearchInput from '@/components/SearchInput';
 import Pagination from '@/components/Pagination';
 import { toast } from 'react-hot-toast';
 import { Package, RotateCw, Grid, List } from 'lucide-react';
+import { Product } from '@/types/product';
 
 const PRODUCTS_PER_PAGE = 6;
 
 export default function Home() {
-  const [products, setProducts] = useState<string[]>([]);
-  const [filteredProducts, setFilteredProducts] = useState<string[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
@@ -89,13 +90,13 @@ export default function Home() {
               </div>
               <h2 className="text-2xl font-bold text-gray-800 mb-2">Oops! Something went wrong</h2>
               <p className="text-gray-600 mb-6">{error}</p>
-              <Button
+              <button
                 onClick={handleRefresh}
                 className="inline-flex items-center gap-2 bg-[#00CCCC] text-white px-6 py-3 rounded-xl hover:bg-[#00AAAA] transition-colors font-medium"
               >
                 <RotateCw size={16} />
                 Try Again
-              </Button>
+              </button>
             </div>
           </div>
         </div>

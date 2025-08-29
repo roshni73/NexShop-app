@@ -25,25 +25,25 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action: PayloadAction<Product>) => {
       const existingItem = state.items.find(item => item.id === action.payload.id);
-      
+
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
         state.items.push({ ...action.payload, quantity: 1 });
       }
-      
+
       const totals = calculateTotals(state.items);
       state.total = totals.total;
       state.totalItems = totals.totalItems;
     },
-    
+
     removeFromCart: (state, action: PayloadAction<number>) => {
       state.items = state.items.filter(item => item.id !== action.payload);
       const totals = calculateTotals(state.items);
       state.total = totals.total;
       state.totalItems = totals.totalItems;
     },
-    
+
     updateQuantity: (state, action: PayloadAction<{ id: number; quantity: number }>) => {
       const item = state.items.find(item => item.id === action.payload.id);
       if (item) {
@@ -52,24 +52,23 @@ const cartSlice = createSlice({
           state.items = state.items.filter(i => i.id !== action.payload.id);
         }
       }
-      
+
       const totals = calculateTotals(state.items);
       state.total = totals.total;
       state.totalItems = totals.totalItems;
     },
 
     isInCart:(state, action: PayloadAction<{id: number}>) => {
-        const item = state.items.find(item => item.id === action.payload.id);
-        ig 
+      const item = state.items.find(item => item.id === action.payload.id);
 
     },
-    
+
     clearCart: (state) => {
       state.items = [];
       state.total = 0;
       state.totalItems = 0;
     },
-    
+
     rehydrateCart: (state, action: PayloadAction<CartState>) => {
       return action.payload;
     },
