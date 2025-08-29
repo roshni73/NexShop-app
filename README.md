@@ -82,6 +82,19 @@ pnpm lint
 # or
 bun lint
 ```
+### Knip
+
+This project is set up with Knip to detect unused dependencies and exported types.
+You can run Knip with the following commands:
+
+```bash
+npx knip
+# or
+yarn knip
+# or
+pnpm knip
+# or
+bun knip
 
 ### Deployment
 
