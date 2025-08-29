@@ -95,7 +95,7 @@ yarn knip
 pnpm knip
 # or
 bun knip
-
+```
 ### Deployment
 
 This project is deployed on Vercel and can be accessed at: [https://yatri-frontend-task-ecommerce-seven.vercel.app/](https://yatri-frontend-task-ecommerce-seven.vercel.app/)
