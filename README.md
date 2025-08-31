@@ -1,6 +1,6 @@
-# Yatri Frontend Task - Ecommerce
+# NexShop - Ecommerce
 
-This is a frontend application for an e-commerce platform, built as a task for Yatri. The project is built with Next.js and utilizes the App Router.
+This is a frontend application for an e-commerce platform,. The project is built with Next.js and utilizes the App Router.
 
 ## Core Technologies
 
@@ -96,6 +96,3 @@ pnpm knip
 # or
 bun knip
 ```
-### Deployment
-
-This project is deployed on Vercel and can be accessed at: [https://yatri-frontend-task-ecommerce-seven.vercel.app/](https://yatri-frontend-task-ecommerce-seven.vercel.app/)
