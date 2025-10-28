@@ -19,11 +19,7 @@ Make sure you have Node.js and a package manager (like pnpm, npm, or yarn) insta
 ### Installation & Setup
 
 1.  **Clone the repository and navigate into the project directory.**
-    ```bash
-    git clone git@github.com:roshni73/yatri-frontend-task-ecommerce.git # HTTPS
-    git clone https://github.com/roshni73/yatri-frontend-task-ecommerce.git  # SSH
-    gh repo clone roshni73/yatri-frontend-task-ecommerce # GitHub CLI
-    ```
+
 
 2.  **Install dependencies:**
     ```bash
